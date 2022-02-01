@@ -25,7 +25,7 @@ The PSNR of the recover image is 29.702 (dB).
 
 
 **2. Image Contrast Enhancement**
-![Image](https://github.com/Jia-Wei-Liao/Variational_Methods_for_Image_Processing/blob/main/result/enhancement.jpg)\
+![Image](https://github.com/Jia-Wei-Liao/Variational_Methods_for_Image_Processing/blob/main/result/enhancement.jpg)
 
 
 ## Citation
