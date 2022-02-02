@@ -1,5 +1,8 @@
 clc; clear; close all;
+addpath("figure\");
 addpath("function\");
+
+file = 'wood.jpg';
 
 % parameter
 alpha = 1.8;
@@ -10,7 +13,6 @@ lambda = 0.0001;
 tol = 1e-5;
 maxIter = 100;
 
-file = 'wood.jpg';
 image = imread(file);
 
 tic;

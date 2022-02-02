@@ -1,13 +1,12 @@
 clc; clear; close all;
-addpath("figure\");
 addpath("function\");
 
-file = 'lenna.jpg';
+file = 'lake.jpg';
 
 % parameter
-grayscale = true;
+grayscale = false;
 resize = true;
-sigma = 5e-3;  % gaussian noise
+sigma = 2e-3;  % gaussian noise
 lambda = 10;
 gamma = 5;
 tol = 1e-6;
@@ -51,27 +50,30 @@ fprintf("The time spending of ROF denosing is %.4d sec\n", time);
 
 %% Compare with difference lambda
 clc; figure;
-ts = tight_subplot(2, 3, [.05 .01], [.03 .05], [.06 .06]);
-Lambda = [5, 10, 15, 20];
+ts = tight_subplot(2, 3, [.04 .02], [.05 .03], [.03 .03])
+Lambda = [10, 20, 30, 40];
 
+%subplot(2, 3, 1);
 axes(ts(1));
 imshow(u_exact);
-title("Original image", "Interpreter", "latex", "FontSize", 14);
+title("Original image", "Interpreter", "latex");
 
+%subplot(2, 3, 2);
 axes(ts(2));
 imshow(f);
 txt = "Noisy image with $\sigma=\,$" + num2str(sigma);
-title(txt, "Interpreter", "latex", "FontSize", 14);
+title(txt, "Interpreter", "latex");
 
 for k = 1:4
     u_sol = ROFDenoising(f, Lambda(k), gamma, tol, maxIter);
     psnr = ComputePSNR(u_sol, u_exact);
 
+    %subplot(2, 3, k+2);
     axes(ts(k+2));
     imshow(u_sol);
     txt = "$\lambda=\,$" + num2str(Lambda(k)) +...
         ", PSNR$=\,$" + num2str(psnr);
-    title(txt, "Interpreter", "latex", "FontSize", 14)
+    title(txt, "Interpreter", "latex")
     fprintf("The PSNR of denosing image with lambda = %d is %.4d\n", ...
         Lambda(k), psnr);
 end
