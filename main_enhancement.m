@@ -9,9 +9,9 @@ alpha = 1.8;
 beta = 1.2 * alpha;
 gamma = 5 / 255;
 delta = 5 / 255;
-lambda = 0.0001;
+lambda = 0.001;
 tol = 1e-5;
-maxIter = 100;
+maxIter = 200;
 
 image = imread(file);
 
@@ -29,4 +29,4 @@ title("Original Image");
 subplot(1, 2, 2);
 imshow(u_sol);
 title("Enhancing Image");
-fprintf("The time spending of ROF denosing is %.4d sec\n", time);
+fprintf("The time spending of contrast enhancing is %.4d sec\n", time);

@@ -1,4 +1,5 @@
-function value = SoftThreshold(f, gamma)
-value = sign(f) .* max(abs(f) - 1 / gamma, 0);
+function X = SoftThreshold(B, lambda)
+% X = argmax(||X-B||_2^2 + lambda ||X||_1)
+X = sign(B) .* max(abs(B) - lambda, 0);
 
 end

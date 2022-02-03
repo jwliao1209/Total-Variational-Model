@@ -20,7 +20,7 @@ else
 end
 
 if resize
-    image = imresize(image, [512 NaN]);
+    image = imresize(image, [512 512]);
 end
 
 u_exact = double(image) / 255;
@@ -51,7 +51,7 @@ fprintf("The time spending of ROF denosing is %.4d sec\n", time);
 
 %% Compare with difference lambda
 clc; figure;
-ts = tight_subplot(2, 3, [.05 .01], [.03 .05], [.06 .06]);
+ts = TightSubplot(2, 3, [0.05 0.01], [0.03 0.05], [0.06 0.06]);
 Lambda = [5, 10, 15, 20];
 
 axes(ts(1));

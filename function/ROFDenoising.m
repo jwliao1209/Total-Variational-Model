@@ -1,9 +1,9 @@
 function u_sol = ROFDenoising(F, lambda, gamma, tol, maxIter)
 
-[m, n, channel] = size(F);
-u_sol = zeros(m, n, channel);
+[m, n, c] = size(F);
+u_sol = zeros(m, n, c);
 
-for k = 1:channel
+for k = 1:c
     f = F(:, :, k);
     iter = 0;
     relativeError = Inf;
@@ -18,15 +18,14 @@ for k = 1:channel
     while iter < maxIter && relativeError > tol
         % Updating u by poisson pde with Neumann BC
         alpha = lambda / gamma;
-        Grad = Gradx(dx - bx, "b") + Grady(dy - by, "b");
-        c = alpha*f - Grad;
-        u_tmp = (c + Laplacian(u) + 8 * u) / (alpha + 8);
+        div_db = ComputeDiv(dx - bx, dy - by, "b");
+        rhs = alpha*f - div_db;
+        u_tmp = SolvePoissonPDE(u, rhs, alpha);
 
         % Updating d by soft-thresholding
-        ux = Gradx(u_tmp, "f");
-        uy = Grady(u_tmp, "f");
-        dx = SoftThreshold(ux + bx, gamma);
-        dy = SoftThreshold(uy + by, gamma);
+        [ux, uy] = ComputeGrad(u_tmp, "f");
+        dx = SoftThreshold(ux + bx, 1 / gamma);
+        dy = SoftThreshold(uy + by, 1 / gamma);
 
         % Updating b
         bx = bx + ux - dx;
