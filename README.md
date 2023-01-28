@@ -1,4 +1,4 @@
-# Variational_Methods_for_Image_Processing
+# Variational Methods for Image Processing
 
 In this project, we implement the variational method to do the image denoising and contrast enhancement. Since the minimum problems are NP-hard, we use the Split Bregman method to approximate the solution. It's efficient and has a convergence guarantee. This work is programmed on MATLAB, so if you want to reproduce our result, please install the MATLAB at the first.
 
