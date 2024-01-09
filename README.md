@@ -3,15 +3,19 @@
 In this project, we implement the variational method to do the image denoising and contrast enhancement. Since the minimum problems are NP-hard, we use the Split Bregman method to approximate the solution. It's efficient and has a convergence guarantee. This work is programmed on MATLAB, so if you want to reproduce our result, please install the MATLAB at the first.
 
 ## Methodology
-Let <img src="https://render.githubusercontent.com/render/math?math=$f$"> be the original image and <img src="https://render.githubusercontent.com/render/math?math=$u$"> be the recover image. We do the image processing by solving the following variational problem.    
+Let $f$ be the original image and $u$ be the recover image. We do the image processing by solving the following variational problem.    
 ### ROF model (Physica D, 1992) 
-<img src="https://render.githubusercontent.com/render/math?math=$\displaystyle \min_{u \in BV(\Omega)} \left(\|u\|_{TV(\Omega)} %2B \frac{\lambda}{2} \int_\Omega (u-f)^2 dx \right)$">
+$\displaystyle \min_{u \in BV(\Omega)}\left(\|u\|_{TV(\Omega)}+\frac{\lambda}{2}\int _{\Omega}(u-f)^2 dx\right)$
 
 ### Hsieh-Shao-Yang model (SIIMS 2020)
-<img src="https://render.githubusercontent.com/render/math?math=$\displaystyle \min_{u} \left(\frac{1}{2} \int_{\Omega} |\nabla u - \nabla h|^2 dx %2B \frac{\lambda}{2} \int_\Omega (u-g)^2 dx %2B \chi_{[0, 255]}(u) \right)$">  
-where  
-<img src="https://render.githubusercontent.com/render/math?math=$\displaystyle g(x)=\begin{cases} \alpha \bar{f}(x), \quad x \in \Omega_d \\ f(x), \quad x \in \Omega_b \end{cases},$">  <img src="https://render.githubusercontent.com/render/math?math=$\displaystyle h(x)=\begin{cases} \beta f(x), \quad x \in \Omega_d \\ f(x), \quad x \in \Omega_b \end{cases}, \text{and}$"> <img src="https://render.githubusercontent.com/render/math?math=$\displaystyle \chi_{[0, 255]}(u)=\begin{cases} 0, \quad \range(u) \subseteq [0, 255] \\ \infty, \quad \text{otherwise} \end{cases}$">
+$\displaystyle \min_{u} \left(\frac{1}{2} \int _{\Omega} |\nabla u - \nabla h|^2 dx + \frac{\lambda}{2} \int _\Omega (u-g)^2 dx + \chi _{[0, 255]}(u) \right)$  
 
+<!--
+where  
+$\displaystyle g(x)=\begin{cases}\alpha\bar{f}(x),\quad x\in\Omega_d\\ f(x), \quad x \in \Omega_b \end{cases},$
+$\displaystyle h(x)=\begin{cases} \beta f(x), \quad x \in \Omega_d \\ f(x), \quad x \in \Omega_b \end{cases}, \text{and}$
+$\displaystyle \chi_{[0, 255]}(u)=\begin{cases} 0, \quad \range(u) \subseteq [0, 255] \\ \infty, \quad \text{otherwise} \end{cases}$
+-->
 
 ## Getting the code
 You can download a copy of all the files in this repository by cloning this repository:
